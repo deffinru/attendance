@@ -21,3 +21,7 @@ name,event,datetime
 Пример:
 
 python attendance.py
+
+### check_out(name, filename)
+
+Регистрирует выход сотрудника. Формат строки такой же, как у check_in, но событие = out.
