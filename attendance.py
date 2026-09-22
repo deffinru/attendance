@@ -15,6 +15,24 @@ def check_out(name: str, filename: str = "attendance.csv") -> None:
         writer = csv.writer(f)
         writer.writerow([name, "out", datetime.now().isoformat()])
 
+def calculate_duration(name: str, filename: str = "attendance.csv") -> float:
+    """Рассчитать длительность последнего сеанса (в часах)."""
+    in_time = None
+    out_time = None
+    with open(filename, encoding="utf-8") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if len(row) < 3 or row[0] != name:
+                continue
+            if row[1] == "in":
+                in_time = datetime.fromisoformat(row[2])
+            elif row[1] == "out":
+                out_time = datetime.fromisoformat(row[2])
+
+    if in_time is None or out_time is None:
+        return 0.0
+    return (out_time - in_time).total_seconds() / 3600
+
 
 if __name__ == "__main__":
     name = input("Введите имя: ")
