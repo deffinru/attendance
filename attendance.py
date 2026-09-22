@@ -1,16 +1,16 @@
 """Модуль учёта посещений."""
 import csv
-from datetime import date
+from datetime import date, datetime
 
 
-def add_visit(name: str, filename: str = "attendance.csv") -> None:
-    """Добавить запись о посещении."""
+def check_in(name: str, filename: str = "attendance.csv") -> None:
+    """Зарегистрировать вход сотрудника."""
     with open(filename, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow([name, date.today().isoformat()])
+        writer.writerow([name, "in", datetime.now().isoformat()])
 
 
 if __name__ == "__main__":
     name = input("Введите имя: ")
-    add_visit(name)
-    print("Запись добавлена.")
+    check_in(name)
+    print("Вход зарегистрирован.")
