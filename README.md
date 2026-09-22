@@ -25,3 +25,7 @@ python attendance.py
 ### check_out(name, filename)
 
 Регистрирует выход сотрудника. Формат строки такой же, как у check_in, но событие = out.
+
+### calculate_duration(name, filename)
+
+Рассчитывает длительность последнего сеанса (в часах) между check_in и check_out.
